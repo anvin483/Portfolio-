@@ -3,9 +3,11 @@ import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import { PROTOCOLS } from "./Protocols";
 import cyberwatchDossier from "@/assets/cyberwatch-dossier.jpeg.asset.json";
+import phishDossier from "@/assets/phish-dossier.png.asset.json";
 
 const DOSSIER_IMAGES: Record<string, string> = {
   cyberwatch: cyberwatchDossier.url,
+  phish: phishDossier.url,
 };
 
 export function ArchiveList() {
