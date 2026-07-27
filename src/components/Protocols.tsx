@@ -96,7 +96,7 @@ export const PROTOCOLS: Protocol[] = [
     id: "soc-deloitte",
     code: "SYS_06",
     name: "Web Log Threat Hunt · Deloitte AU",
-    category: "OFFENSIVE",
+    category: "AUTOMATION",
     summary:
       "Post-breach hunt through web activity logs to isolate malicious user behavior and formulate IR recommendations.",
     stack: ["Log Analysis", "Threat Detection", "IR"],
