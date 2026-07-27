@@ -2,6 +2,11 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import { PROTOCOLS } from "./Protocols";
+import cyberwatchDossier from "@/assets/cyberwatch-dossier.jpeg.asset.json";
+
+const DOSSIER_IMAGES: Record<string, string> = {
+  cyberwatch: cyberwatchDossier.url,
+};
 
 export function ArchiveList() {
   const [active, setActive] = useState(0);
