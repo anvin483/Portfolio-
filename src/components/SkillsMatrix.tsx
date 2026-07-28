@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
-import { Sword, Shield, Terminal, Code2 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Sword, Shield, Terminal, Code2, X, Zap } from "lucide-react";
+import { useState } from "react";
 
 const GROUPS = [
   {
