@@ -79,7 +79,25 @@ export const PROTOCOLS: Protocol[] = [
       "Enforced upload validation, redirect allow-listing, server-level defense-in-depth, MySQL schema + query optimization.",
     architecture: "Legacy PHP → Laravel MVC with Eloquent ORM → hardened MySQL schema.",
   },
+  {
+    id: "quiz",
+    code: "SYS_05",
+    name: "Automated Quiz Platform",
+    category: "AUTOMATION",
+    summary:
+      "Timed, auto-scoring assessment engine with anti-cheating controls, role-based access and live result dashboards.",
+    stack: ["Python", "Flask", "SQLite", "JavaScript", "Bootstrap"],
+    scope:
+      "End-to-end quiz platform for students and faculty: question banks, timed sessions, instant scoring, and result analytics.",
+    threat:
+      "Unauthorized access to questions, answer tampering, impersonation, and result manipulation.",
+    mitigation:
+      "Role-based login, server-side answer validation, session timeout, randomized question ordering, and audit logging.",
+    architecture:
+      "Flask routes + SQLite store → Jinja2/JS frontend → auto-graded submissions → admin analytics dashboard.",
+  },
 ];
+
 
 
 const FILTERS = ["ALL", "OFFENSIVE", "DEFENSIVE", "AUTOMATION"] as const;
