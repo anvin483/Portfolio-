@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { X } from "lucide-react";
+import { X, ShieldCheck } from "lucide-react";
 
 export type Protocol = {
   id: string;
@@ -79,7 +79,25 @@ export const PROTOCOLS: Protocol[] = [
       "Enforced upload validation, redirect allow-listing, server-level defense-in-depth, MySQL schema + query optimization.",
     architecture: "Legacy PHP → Laravel MVC with Eloquent ORM → hardened MySQL schema.",
   },
+  {
+    id: "quiz",
+    code: "SYS_05",
+    name: "Automated Quiz Platform",
+    category: "AUTOMATION",
+    summary:
+      "Timed, auto-scoring assessment engine with anti-cheating controls, role-based access and live result dashboards.",
+    stack: ["Python", "Flask", "SQLite", "JavaScript", "Bootstrap"],
+    scope:
+      "End-to-end quiz platform for students and faculty: question banks, timed sessions, instant scoring, and result analytics.",
+    threat:
+      "Unauthorized access to questions, answer tampering, impersonation, and result manipulation.",
+    mitigation:
+      "Role-based login, server-side answer validation, session timeout, randomized question ordering, and audit logging.",
+    architecture:
+      "Flask routes + SQLite store → Jinja2/JS frontend → auto-graded submissions → admin analytics dashboard.",
+  },
 ];
+
 
 
 const FILTERS = ["ALL", "OFFENSIVE", "DEFENSIVE", "AUTOMATION"] as const;
@@ -125,43 +143,69 @@ export function ProtocolsSection() {
                 layout
                 key={p.id}
                 onClick={() => setOpen(p)}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3, delay: idx * 0.04, ease: [0.4, 0, 0.2, 1] }}
-                whileHover={{ y: -4 }}
+                initial={{ opacity: 0, y: 30, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -20, scale: 0.96 }}
+                transition={{
+                  duration: 0.4,
+                  delay: idx * 0.06,
+                  ease: [0.4, 0, 0.2, 1],
+                  layout: { duration: 0.35 },
+                }}
+                whileHover={{
+                  y: -6,
+                  scale: 1.01,
+                  transition: { duration: 0.2 },
+                }}
+                whileTap={{ scale: 0.99 }}
                 className="clip-protocol group relative overflow-hidden border border-white/10 bg-[#121212] p-6 text-left t-tactical hover:border-[#DC2626]"
                 style={{ transitionProperty: "border-color, box-shadow, transform" }}
               >
-                <div className="pointer-events-none absolute inset-0 opacity-0 t-tactical group-hover:opacity-100 group-hover:shadow-[0_0_20px_rgba(220,38,38,0.5)]" />
+                <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <div className="absolute inset-0 bg-gradient-to-b from-[#DC2626]/5 to-transparent" />
+                </div>
                 <div className="mb-6 flex items-start justify-between">
                   <span className="ui-label text-[#DC2626]">{p.category}</span>
-                  <span className="mono-data text-[#DC2626]">{p.code}</span>
+                  <div className="flex items-center gap-2">
+                    <span className="mono-data text-[#DC2626]">{p.code}</span>
+                    <span className="flex items-center gap-1 border border-[#DC2626]/30 bg-[#DC2626]/10 px-1.5 py-0.5">
+                      <span className="h-1.5 w-1.5 bg-[#DC2626] pulse-red" />
+                      <ShieldCheck className="h-3 w-3 text-[#DC2626]" />
+                      <span className="mono-data text-[9px] text-[#DC2626]">VERIFIED</span>
+                    </span>
+                  </div>
                 </div>
                 <h3 className="text-xl font-bold tracking-tight text-white group-hover:red-glow-text">
                   {p.name}
                 </h3>
                 <p className="mt-3 text-[15px] leading-snug text-white/60">{p.summary}</p>
                 <div className="mt-5 flex flex-wrap gap-1.5">
-                  {p.stack.map((s) => (
-                    <span
+                  {p.stack.map((s, si) => (
+                    <motion.span
                       key={s}
-                      className="mono-data border border-white/10 bg-black/40 px-2 py-1 text-white/60"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.3 + idx * 0.06 + si * 0.03, duration: 0.25 }}
+                      className="mono-data border border-white/10 bg-black/40 px-2 py-1 text-white/60 group-hover:border-white/20 group-hover:text-white/80"
                     >
                       {s}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
                 <div className="mt-6 flex items-center justify-between">
                   <span className="ui-label text-white/40 group-hover:text-[#DC2626]">
                     OPEN DOSSIER →
                   </span>
-                  <span className="mono-data text-white/30">STATUS: LIVE</span>
+                  <span className="flex items-center gap-1.5 mono-data text-white/30">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                    LIVE
+                  </span>
                 </div>
               </motion.button>
             ))}
           </AnimatePresence>
         </div>
+
       </div>
 
       <AnimatePresence>
@@ -185,10 +229,10 @@ function ProtocolModal({ p, onClose }: { p: Protocol; onClose: () => void }) {
         aria-hidden
       />
       <motion.div
-        initial={{ opacity: 0, scale: 0.96, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.98, y: 10 }}
-        transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+        initial={{ opacity: 0, scale: 0.9, y: 40, rotateX: -8 }}
+        animate={{ opacity: 1, scale: 1, y: 0, rotateX: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20, rotateX: 8 }}
+        transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
         className="relative z-10 max-h-[85vh] w-full max-w-3xl overflow-hidden border border-[#DC2626]/60 bg-[#0a0a0a] red-glow-box"
       >
         <div className="scan-line" />
@@ -198,52 +242,85 @@ function ProtocolModal({ p, onClose }: { p: Protocol; onClose: () => void }) {
             <span className="ui-label text-white/50">/</span>
             <span className="ui-label text-white/80">{p.category}</span>
           </div>
-          <button
-            onClick={onClose}
-            className="border border-white/10 p-1.5 text-white/60 t-tactical hover:border-[#DC2626] hover:text-[#DC2626]"
-            aria-label="Close"
-          >
-            <X className="h-4 w-4" />
-          </button>
+          <div className="flex items-center gap-3">
+            <span className="flex items-center gap-1 border border-[#DC2626]/30 bg-[#DC2626]/10 px-1.5 py-0.5">
+              <span className="h-1.5 w-1.5 bg-[#DC2626] pulse-red" />
+              <ShieldCheck className="h-3 w-3 text-[#DC2626]" />
+              <span className="mono-data text-[9px] text-[#DC2626]">VERIFIED</span>
+            </span>
+            <button
+              onClick={onClose}
+              className="border border-white/10 p-1.5 text-white/60 t-tactical hover:border-[#DC2626] hover:text-[#DC2626]"
+              aria-label="Close"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
         </div>
         <div className="max-h-[calc(85vh-52px)] overflow-y-auto p-6 md:p-8">
-          <h3 className="text-3xl font-bold uppercase tracking-tight text-white red-glow-text">
+          <motion.h3
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.1, duration: 0.3 }}
+            className="text-3xl font-bold uppercase tracking-tight text-white red-glow-text"
+          >
             {p.name}
-          </h3>
-          <p className="mt-3 text-[17px] text-white/70">{p.summary}</p>
+          </motion.h3>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.15, duration: 0.3 }}
+            className="mt-3 text-[17px] text-white/70"
+          >
+            {p.summary}
+          </motion.p>
           <div className="mt-6 grid gap-5 md:grid-cols-2">
-            <Field label="Scope" body={p.scope} />
-            <Field label="Threat Vector" body={p.threat} />
-            <Field label="Mitigation" body={p.mitigation} />
-            <Field label="Architecture" body={p.architecture} />
+            <Field label="Scope" body={p.scope} delay={0.2} />
+            <Field label="Threat Vector" body={p.threat} delay={0.25} />
+            <Field label="Mitigation" body={p.mitigation} delay={0.3} />
+            <Field label="Architecture" body={p.architecture} delay={0.35} />
           </div>
-          <div className="mt-6">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.3 }}
+            className="mt-6"
+          >
             <div className="ui-label mb-2 text-white/40">STACK</div>
             <div className="flex flex-wrap gap-1.5">
-              {p.stack.map((s) => (
-                <span
+              {p.stack.map((s, i) => (
+                <motion.span
                   key={s}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.45 + i * 0.04, duration: 0.25 }}
                   className="mono-data border border-white/10 bg-black/40 px-2 py-1 text-white/70"
                 >
                   {s}
-                </span>
+                </motion.span>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       </motion.div>
     </motion.div>
   );
 }
 
-function Field({ label, body }: { label: string; body: string }) {
+function Field({ label, body, delay }: { label: string; body: string; delay: number }) {
   return (
-    <div className="border border-white/10 bg-[#121212] p-4">
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay, duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+      className="border border-white/10 bg-[#121212] p-4"
+    >
       <div className="ui-label mb-2 text-[#DC2626]">{label}</div>
       <p className="text-[15px] leading-snug text-white/75">{body}</p>
-    </div>
+    </motion.div>
   );
 }
+
 
 export function SectionHeader({
   index,
