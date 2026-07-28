@@ -168,13 +168,10 @@ export function ProtocolsSection() {
                   <span className="ui-label text-[#DC2626]">{p.category}</span>
                   <div className="flex items-center gap-2">
                     <span className="mono-data text-[#DC2626]">{p.code}</span>
-                    <span className="flex items-center gap-1 border border-[#DC2626]/30 bg-[#DC2626]/10 px-1.5 py-0.5">
-                      <span className="h-1.5 w-1.5 bg-[#DC2626] pulse-red" />
-                      <ShieldCheck className="h-3 w-3 text-[#DC2626]" />
-                      <span className="mono-data text-[9px] text-[#DC2626]">VERIFIED</span>
-                    </span>
+                    <VerifiedBadge />
                   </div>
                 </div>
+
                 <h3 className="text-xl font-bold tracking-tight text-white group-hover:red-glow-text">
                   {p.name}
                 </h3>
