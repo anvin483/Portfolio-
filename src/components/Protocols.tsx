@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { X } from "lucide-react";
+import { X, ShieldCheck, CheckCircle } from "lucide-react";
 
 export type Protocol = {
   id: string;
