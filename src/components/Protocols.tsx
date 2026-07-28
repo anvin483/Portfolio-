@@ -79,34 +79,8 @@ export const PROTOCOLS: Protocol[] = [
       "Enforced upload validation, redirect allow-listing, server-level defense-in-depth, MySQL schema + query optimization.",
     architecture: "Legacy PHP → Laravel MVC with Eloquent ORM → hardened MySQL schema.",
   },
-  {
-    id: "quiz",
-    code: "SYS_05",
-    name: "Automated Quiz Platform",
-    category: "AUTOMATION",
-    summary:
-      "Freelance build for Uttkarsh Minds: Python/Flask assessment engine driven by Excel-based item banks.",
-    stack: ["Python", "Flask", "Excel", "SQLite"],
-    scope: "Automate assessment generation and delivery for training cohorts.",
-    threat: "Manual assessment drift, cheating via predictable question order.",
-    mitigation: "Randomized item selection, per-attempt state, admin-controlled question ingestion.",
-    architecture: "Excel item bank → Flask ingest → randomized quiz generator → attempt store.",
-  },
-  {
-    id: "soc-deloitte",
-    code: "SYS_06",
-    name: "Web Log Threat Hunt · Deloitte AU",
-    category: "AUTOMATION",
-    summary:
-      "Post-breach hunt through web activity logs to isolate malicious user behavior and formulate IR recommendations.",
-    stack: ["Log Analysis", "Threat Detection", "IR"],
-    scope: "Virtual job simulation modeling a post-breach investigation.",
-    threat: "Suspicious session patterns following a simulated intrusion.",
-    mitigation:
-      "Pattern-of-life baselining, anomaly isolation, structured incident-response recommendations.",
-    architecture: "Raw web logs → parsed sessions → anomaly triage → IR report.",
-  },
 ];
+
 
 const FILTERS = ["ALL", "OFFENSIVE", "DEFENSIVE", "AUTOMATION"] as const;
 
