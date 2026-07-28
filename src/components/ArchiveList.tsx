@@ -74,15 +74,36 @@ export function ArchiveList() {
             </div>
             <div className="mono-data mt-1 text-white/50">{p.code} · {p.category}</div>
             {DOSSIER_IMAGES[p.id] && (
-              <div className="clip-notch-tr relative mt-4 overflow-hidden border border-[#DC2626]/30">
-                <img
-                  src={DOSSIER_IMAGES[p.id]}
-                  alt={`${p.name} operational dashboard`}
-                  className="block w-full"
-                  loading="lazy"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/60 via-transparent to-transparent" />
-              </div>
+              p.id === "portal" ? (
+                <a
+                  href="https://ims.fcrit.ac.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="clip-notch-tr t-tactical group relative mt-4 block overflow-hidden border border-[#DC2626]/30 hover:border-[#DC2626]"
+                  aria-label="Open ims.fcrit.ac.in in a new tab"
+                >
+                  <img
+                    src={DOSSIER_IMAGES[p.id]}
+                    alt={`${p.name} operational dashboard`}
+                    className="block w-full t-tactical group-hover:scale-[1.02]"
+                    loading="lazy"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/60 via-transparent to-transparent" />
+                  <div className="mono-data absolute bottom-2 right-2 bg-[#DC2626] px-2 py-1 text-[10px] font-bold uppercase text-black">
+                    ims.fcrit.ac.in ↗
+                  </div>
+                </a>
+              ) : (
+                <div className="clip-notch-tr relative mt-4 overflow-hidden border border-[#DC2626]/30">
+                  <img
+                    src={DOSSIER_IMAGES[p.id]}
+                    alt={`${p.name} operational dashboard`}
+                    className="block w-full"
+                    loading="lazy"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/60 via-transparent to-transparent" />
+                </div>
+              )
             )}
             <p className="mt-5 text-[15px] leading-snug text-white/70">{p.summary}</p>
             <div className="mt-5 space-y-2 text-[13px]">
