@@ -319,6 +319,23 @@ function Field({ label, body, delay }: { label: string; body: string; delay: num
 }
 
 
+function VerifiedBadge() {
+  return (
+    <motion.span
+      initial={{ opacity: 0, scale: 0.6, y: -4 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ delay: 0.2, duration: 0.4, type: "spring", stiffness: 260, damping: 16 }}
+      whileHover={{ scale: 1.08, y: -1 }}
+      className="relative inline-flex items-center gap-1 overflow-hidden border border-[#DC2626]/30 bg-[#DC2626]/10 px-1.5 py-0.5 verified-glow"
+    >
+      <span className="verified-shimmer absolute inset-0" />
+      <span className="relative h-1.5 w-1.5 bg-[#DC2626] pulse-red" />
+      <ShieldCheck className="relative h-3 w-3 text-[#DC2626]" />
+      <span className="relative mono-data text-[9px] text-[#DC2626] text-flicker">VERIFIED</span>
+    </motion.span>
+  );
+}
+
 export function SectionHeader({
   index,
   label,
@@ -341,3 +358,4 @@ export function SectionHeader({
     </div>
   );
 }
+
