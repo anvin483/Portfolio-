@@ -240,11 +240,7 @@ function ProtocolModal({ p, onClose }: { p: Protocol; onClose: () => void }) {
             <span className="ui-label text-white/80">{p.category}</span>
           </div>
           <div className="flex items-center gap-3">
-            <span className="flex items-center gap-1 border border-[#DC2626]/30 bg-[#DC2626]/10 px-1.5 py-0.5">
-              <span className="h-1.5 w-1.5 bg-[#DC2626] pulse-red" />
-              <ShieldCheck className="h-3 w-3 text-[#DC2626]" />
-              <span className="mono-data text-[9px] text-[#DC2626]">VERIFIED</span>
-            </span>
+            <VerifiedBadge />
             <button
               onClick={onClose}
               className="border border-white/10 p-1.5 text-white/60 t-tactical hover:border-[#DC2626] hover:text-[#DC2626]"
