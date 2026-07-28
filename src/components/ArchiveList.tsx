@@ -4,10 +4,12 @@ import { ChevronRight } from "lucide-react";
 import { PROTOCOLS } from "./Protocols";
 import cyberwatchDossier from "@/assets/cyberwatch-dossier.jpeg.asset.json";
 import phishDossier from "@/assets/phish-dossier.png.asset.json";
+import fcritPortalDossier from "@/assets/fcrit-portal-dossier.png.asset.json";
 
 const DOSSIER_IMAGES: Record<string, string> = {
   cyberwatch: cyberwatchDossier.url,
   phish: phishDossier.url,
+  portal: fcritPortalDossier.url,
 };
 
 export function ArchiveList() {
