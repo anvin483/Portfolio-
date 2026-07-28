@@ -143,43 +143,69 @@ export function ProtocolsSection() {
                 layout
                 key={p.id}
                 onClick={() => setOpen(p)}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3, delay: idx * 0.04, ease: [0.4, 0, 0.2, 1] }}
-                whileHover={{ y: -4 }}
+                initial={{ opacity: 0, y: 30, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -20, scale: 0.96 }}
+                transition={{
+                  duration: 0.4,
+                  delay: idx * 0.06,
+                  ease: [0.4, 0, 0.2, 1],
+                  layout: { duration: 0.35 },
+                }}
+                whileHover={{
+                  y: -6,
+                  scale: 1.01,
+                  transition: { duration: 0.2 },
+                }}
+                whileTap={{ scale: 0.99 }}
                 className="clip-protocol group relative overflow-hidden border border-white/10 bg-[#121212] p-6 text-left t-tactical hover:border-[#DC2626]"
                 style={{ transitionProperty: "border-color, box-shadow, transform" }}
               >
-                <div className="pointer-events-none absolute inset-0 opacity-0 t-tactical group-hover:opacity-100 group-hover:shadow-[0_0_20px_rgba(220,38,38,0.5)]" />
+                <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <div className="absolute inset-0 bg-gradient-to-b from-[#DC2626]/5 to-transparent" />
+                </div>
                 <div className="mb-6 flex items-start justify-between">
                   <span className="ui-label text-[#DC2626]">{p.category}</span>
-                  <span className="mono-data text-[#DC2626]">{p.code}</span>
+                  <div className="flex items-center gap-2">
+                    <span className="mono-data text-[#DC2626]">{p.code}</span>
+                    <span className="flex items-center gap-1 border border-[#DC2626]/30 bg-[#DC2626]/10 px-1.5 py-0.5">
+                      <span className="h-1.5 w-1.5 bg-[#DC2626] pulse-red" />
+                      <ShieldCheck className="h-3 w-3 text-[#DC2626]" />
+                      <span className="mono-data text-[9px] text-[#DC2626]">VERIFIED</span>
+                    </span>
+                  </div>
                 </div>
                 <h3 className="text-xl font-bold tracking-tight text-white group-hover:red-glow-text">
                   {p.name}
                 </h3>
                 <p className="mt-3 text-[15px] leading-snug text-white/60">{p.summary}</p>
                 <div className="mt-5 flex flex-wrap gap-1.5">
-                  {p.stack.map((s) => (
-                    <span
+                  {p.stack.map((s, si) => (
+                    <motion.span
                       key={s}
-                      className="mono-data border border-white/10 bg-black/40 px-2 py-1 text-white/60"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.3 + idx * 0.06 + si * 0.03, duration: 0.25 }}
+                      className="mono-data border border-white/10 bg-black/40 px-2 py-1 text-white/60 group-hover:border-white/20 group-hover:text-white/80"
                     >
                       {s}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
                 <div className="mt-6 flex items-center justify-between">
                   <span className="ui-label text-white/40 group-hover:text-[#DC2626]">
                     OPEN DOSSIER →
                   </span>
-                  <span className="mono-data text-white/30">STATUS: LIVE</span>
+                  <span className="flex items-center gap-1.5 mono-data text-white/30">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                    LIVE
+                  </span>
                 </div>
               </motion.button>
             ))}
           </AnimatePresence>
         </div>
+
       </div>
 
       <AnimatePresence>
