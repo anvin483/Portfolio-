@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ShieldCheck, Award, GraduationCap, X, ExternalLink } from "lucide-react";
 import certAsset from "@/assets/career-essentials-cert.png.asset.json";
 import genCertAsset from "@/assets/generative-ai-cert.png.asset.json";
+import deloitteCertAsset from "@/assets/deloitte-cyber-job-simulation-cert.jpeg.asset.json";
 
 type Cred = {
   code: string;
