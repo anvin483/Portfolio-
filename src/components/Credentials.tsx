@@ -4,6 +4,7 @@ import { ShieldCheck, Award, GraduationCap, X, ExternalLink } from "lucide-react
 import certAsset from "@/assets/career-essentials-cert.png.asset.json";
 import genCertAsset from "@/assets/generative-ai-cert.png.asset.json";
 import deloitteCertAsset from "@/assets/deloitte-cyber-job-simulation-cert.jpeg.asset.json";
+import pwcCertAsset from "@/assets/pwc-cyber-job-simulation-cert.png.asset.json";
 
 type Cred = {
   code: string;
@@ -51,6 +52,7 @@ const CREDS: Cred[] = [
     org: "PwC US",
     status: "VERIFIED",
     icon: Award,
+    certificate: pwcCertAsset.url,
   },
   {
     code: "CRT_06",
