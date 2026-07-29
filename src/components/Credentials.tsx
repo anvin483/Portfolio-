@@ -43,6 +43,7 @@ const CREDS: Cred[] = [
     org: "Deloitte AU",
     status: "VERIFIED",
     icon: Award,
+    certificate: deloitteCertAsset.url,
   },
   {
     code: "CRT_05",
