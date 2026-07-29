@@ -108,7 +108,7 @@ export function Credentials() {
 
               {c.certificate && (
                 <button
-                  onClick={() => setOpenCert(c.certificate!)}
+                  onClick={() => setOpenCred(c)}
                   className="mt-4 inline-flex items-center justify-center gap-2 border border-[#DC2626]/50 bg-[#DC2626]/10 px-3 py-2 ui-label text-[#DC2626] t-tactical hover:bg-[#DC2626] hover:text-white hover:red-glow-soft"
                 >
                   <ExternalLink className="h-3.5 w-3.5" strokeWidth={1.5} />
@@ -126,12 +126,12 @@ export function Credentials() {
       </div>
 
       <AnimatePresence>
-        {openCert && (
+        {openCred && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setOpenCert(null)}
+            onClick={() => setOpenCred(null)}
             className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm"
           >
             <motion.div
@@ -144,11 +144,11 @@ export function Credentials() {
             >
               <div className="flex items-center justify-between border-b border-white/10 pb-3">
                 <div className="flex items-center gap-3">
-                  <span className="mono-data text-[#DC2626]">CRT_02 // CERTIFICATE</span>
-                  <span className="mono-data text-emerald-400/80">● VERIFIED</span>
+                  <span className="mono-data text-[#DC2626]">{openCred.code} // CERTIFICATE</span>
+                  <span className="mono-data text-emerald-400/80">● {openCred.status}</span>
                 </div>
                 <button
-                  onClick={() => setOpenCert(null)}
+                  onClick={() => setOpenCred(null)}
                   className="border border-white/10 p-1.5 text-white/70 hover:border-[#DC2626] hover:text-[#DC2626]"
                   aria-label="Close certificate"
                 >
@@ -156,11 +156,11 @@ export function Credentials() {
                 </button>
               </div>
               <div className="mt-4 border border-white/10 bg-white">
-                <img src={openCert} alt="Career Essentials in Cybersecurity certificate" className="block h-auto w-full" />
+                <img src={openCred.certificate} alt={`${openCred.name} certificate`} className="block h-auto w-full" />
               </div>
               <div className="mt-3 flex items-center justify-between">
-                <span className="ui-label text-white/40">CHAIN-OF-TRUST // sha256:crt_02…</span>
-                <span className="mono-data text-white/60">issuer: Microsoft &amp; LinkedIn</span>
+                <span className="ui-label text-white/40">CHAIN-OF-TRUST // sha256:{openCred.code.toLowerCase()}…</span>
+                <span className="mono-data text-white/60">issuer: {openCred.org}</span>
               </div>
             </motion.div>
           </motion.div>
@@ -169,3 +169,4 @@ export function Credentials() {
     </section>
   );
 }
+
