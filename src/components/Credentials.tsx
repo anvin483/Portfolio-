@@ -2,8 +2,18 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShieldCheck, Award, GraduationCap, X, ExternalLink } from "lucide-react";
 import certAsset from "@/assets/career-essentials-cert.png.asset.json";
+import genCertAsset from "@/assets/generative-ai-cert.png.asset.json";
 
-const CREDS = [
+type Cred = {
+  code: string;
+  name: string;
+  org: string;
+  status: string;
+  icon: typeof ShieldCheck;
+  certificate?: string;
+};
+
+const CREDS: Cred[] = [
   {
     code: "CRT_01",
     name: "CompTIA Security+",
@@ -46,11 +56,12 @@ const CREDS = [
     org: "NxtWave",
     status: "VERIFIED",
     icon: GraduationCap,
+    certificate: genCertAsset.url,
   },
 ];
 
 export function Credentials() {
-  const [openCert, setOpenCert] = useState<string | null>(null);
+  const [openCred, setOpenCred] = useState<Cred | null>(null);
 
   return (
     <section id="credentials" className="relative border-t border-white/10 py-24">
