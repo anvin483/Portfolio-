@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ExternalLink, Terminal as TerminalIcon } from "lucide-react";
 import { PROTOCOLS } from "./Protocols";
 import fcritPortalDossier from "@/assets/fcrit-portal-dossier.png.asset.json";
+import utkarshQuizPlatform from "@/assets/utkarsh-quiz-platform.png.asset.json";
 
 const portal = PROTOCOLS.find((p) => p.id === "portal")!;
 
@@ -12,7 +13,7 @@ const ENTRIES = [
     org: "Utkarsh Minds",
     period: "2024 — 2025",
     href: null,
-    image: null,
+    image: utkarshQuizPlatform.url,
     summary:
       "Business Intelligence and data-engineering engagement focused on cleaning, transforming, and validating large datasets to power reliable analytics and decision-making.",
     stack: ["Python", "Pandas", "SQL", "ETL Pipelines", "Data Validation", "Jupyter"],
@@ -33,6 +34,7 @@ const ENTRIES = [
     bullets: [portal.scope, portal.threat, portal.mitigation, portal.architecture],
   },
 ];
+
 
 function DataVizPlaceholder() {
   return (
