@@ -3,6 +3,7 @@ import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
 import { ProtocolsSection } from "@/components/Protocols";
 import { ArchiveList } from "@/components/ArchiveList";
+import { Experience } from "@/components/Experience";
 import { SkillsMatrix } from "@/components/SkillsMatrix";
 import { Credentials } from "@/components/Credentials";
 import { Contact } from "@/components/Contact";
