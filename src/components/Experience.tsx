@@ -164,6 +164,26 @@ export function Experience() {
                     ims.fcrit.ac.in ↗
                   </div>
                 </motion.a>
+              ) : e.image ? (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="clip-notch-tr group relative self-start overflow-hidden border border-[#DC2626]/30 bg-[#0a0a0a]"
+                >
+                  <div className="scan-line" />
+                  <img
+                    src={e.image}
+                    alt={`${e.role} project screenshot`}
+                    className="block w-full t-tactical group-hover:scale-[1.03]"
+                    loading="lazy"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/70 via-transparent to-transparent" />
+                  <div className="mono-data absolute bottom-2 right-2 bg-[#DC2626] px-2 py-1 text-[10px] font-bold uppercase text-black">
+                    {e.org}
+                  </div>
+                </motion.div>
               ) : (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.98 }}
@@ -175,6 +195,7 @@ export function Experience() {
                   <DataVizPlaceholder />
                 </motion.div>
               )}
+
             </motion.article>
           ))}
         </div>
