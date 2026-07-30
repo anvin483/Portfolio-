@@ -6,6 +6,7 @@ const LINKS = [
   { label: "SYSTEMS", href: "#systems" },
   { label: "PROTOCOLS", href: "#protocols" },
   { label: "ARCHIVE", href: "#archive" },
+  { label: "EXPERIENCE", href: "#experience" },
   { label: "CREDENTIALS", href: "#credentials" },
   { label: "TERMINAL", href: "#terminal" },
 ];
