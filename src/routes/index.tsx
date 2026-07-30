@@ -38,6 +38,7 @@ function Portfolio() {
         <Hero />
         <ProtocolsSection />
         <ArchiveList />
+        <Experience />
         <SkillsMatrix />
         <Credentials />
         <Contact />
