@@ -79,7 +79,7 @@ export function Credentials() {
           transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
           className="flex items-center gap-3"
         >
-          <span className="mono-data text-[#DC2626]">// 05</span>
+          <span className="mono-data text-[#DC2626]">// 06</span>
           <span className="h-px flex-1 bg-white/10" />
           <span className="ui-label text-white/40">Credentials</span>
         </motion.div>
