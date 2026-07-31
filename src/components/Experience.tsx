@@ -1,8 +1,10 @@
-import { motion } from "framer-motion";
-import { ExternalLink, Terminal as TerminalIcon } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ExternalLink, Terminal as TerminalIcon, X } from "lucide-react";
 import { PROTOCOLS } from "./Protocols";
 import fcritPortalDossier from "@/assets/fcrit-portal-dossier.png.asset.json";
 import utkarshQuizPlatform from "@/assets/utkarsh-quiz-platform.png.asset.json";
+import utkarshCertAsset from "@/assets/utkarsh-minds-cert.jpeg.asset.json";
 
 const portal = PROTOCOLS.find((p) => p.id === "portal")!;
 
@@ -14,6 +16,8 @@ const ENTRIES = [
     period: "2024 — 2025",
     href: null,
     image: utkarshQuizPlatform.url,
+    certificate: utkarshCertAsset.url,
+    certificateTitle: "Mini Project – Data Processing for Business Intelligence",
     summary:
       "Business Intelligence and data-engineering engagement focused on cleaning, transforming, and validating large datasets to power reliable analytics and decision-making.",
     stack: ["Python", "Pandas", "SQL", "ETL Pipelines", "Data Validation", "Jupyter"],
@@ -29,6 +33,8 @@ const ENTRIES = [
     period: "PRODUCTION ENGAGEMENT",
     href: "https://ims.fcrit.ac.in",
     image: fcritPortalDossier.url,
+    certificate: null,
+    certificateTitle: null,
     summary: portal.summary,
     stack: portal.stack,
     bullets: [portal.scope, portal.threat, portal.mitigation, portal.architecture],
@@ -65,6 +71,12 @@ function DataVizPlaceholder() {
 }
 
 export function Experience() {
+  const [openCert, setOpenCert] = useState<{
+    title: string;
+    org: string;
+    image: string;
+  } | null>(null);
+
   return (
     <section id="experience" className="relative border-t border-white/10 py-24">
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(220,38,38,0.04)_1px,transparent_1px)] bg-[size:64px_100%]" />
@@ -140,6 +152,25 @@ export function Experience() {
                     </span>
                   ))}
                 </div>
+
+                {e.certificate && (
+                  <motion.button
+                    onClick={() =>
+                      setOpenCert({
+                        title: e.certificateTitle || e.role,
+                        org: e.org,
+                        image: e.certificate!,
+                      })
+                    }
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="group relative mt-5 inline-flex items-center justify-center gap-2 overflow-hidden border border-[#DC2626]/50 bg-[#DC2626]/10 px-3 py-2 ui-label text-[#DC2626] t-tactical hover:bg-[#DC2626] hover:text-white hover:red-glow-soft"
+                  >
+                    <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+                    <ExternalLink className="h-3.5 w-3.5" strokeWidth={1.5} />
+                    View Certificate
+                  </motion.button>
+                )}
               </div>
 
               {e.image && e.href ? (
@@ -200,6 +231,63 @@ export function Experience() {
           ))}
         </div>
       </div>
+
+      <AnimatePresence>
+        {openCert && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setOpenCert(null)}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85, rotateX: -12, y: 40 }}
+              animate={{ opacity: 1, scale: 1, rotateX: 0, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, rotateX: 8 }}
+              transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+              onClick={(e) => e.stopPropagation()}
+              className="clip-notch-bl relative w-full max-w-4xl overflow-hidden border border-[#DC2626]/60 bg-[#0a0a0a] p-4 red-glow-soft"
+            >
+              <div className="scan-line pointer-events-none absolute inset-0 z-10 opacity-20" />
+              <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                <div className="flex items-center gap-3">
+                  <span className="mono-data text-[#DC2626]">FIELD DEPLOYMENT // CERTIFICATE</span>
+                  <span className="mono-data text-emerald-400/80">
+                    <span className="inline-block animate-pulse">●</span> VERIFIED
+                  </span>
+                </div>
+                <motion.button
+                  onClick={() => setOpenCert(null)}
+                  whileHover={{ scale: 1.1, rotate: 90 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="border border-white/10 p-1.5 text-white/70 hover:border-[#DC2626] hover:text-[#DC2626]"
+                  aria-label="Close certificate"
+                >
+                  <X className="h-4 w-4" strokeWidth={1.5} />
+                </motion.button>
+              </div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.15 }}
+                className="mt-4 border border-white/10 bg-white"
+              >
+                <img src={openCert.image} alt={`${openCert.title} certificate`} className="block h-auto w-full" />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.4, delay: 0.25 }}
+                className="mt-3 flex flex-col items-start justify-between gap-1 sm:flex-row sm:items-center"
+              >
+                <span className="ui-label text-white/40">CHAIN-OF-TRUST // sha256:field-cert…</span>
+                <span className="mono-data text-white/60">issuer: {openCert.org}</span>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
