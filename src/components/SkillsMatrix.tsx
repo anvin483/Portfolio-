@@ -242,7 +242,7 @@ export function SkillsMatrix() {
     <section id="systems" className="relative border-t border-white/10 py-24">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex items-center gap-3">
-          <span className="mono-data text-[#DC2626]">// 04</span>
+          <span className="mono-data text-[#DC2626]">// 05</span>
           <span className="h-px flex-1 bg-white/10" />
           <span className="ui-label text-white/40">Systems</span>
         </div>

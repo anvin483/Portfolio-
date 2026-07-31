@@ -6,7 +6,9 @@ import { ArchiveList } from "@/components/ArchiveList";
 import { Experience } from "@/components/Experience";
 import { SkillsMatrix } from "@/components/SkillsMatrix";
 import { Credentials } from "@/components/Credentials";
+import { Achievements } from "@/components/Achievements";
 import { Contact } from "@/components/Contact";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -41,6 +43,7 @@ function Portfolio() {
         <Experience />
         <SkillsMatrix />
         <Credentials />
+        <Achievements />
         <Contact />
       </main>
       <footer className="border-t border-white/10 bg-[#050505]">
@@ -56,3 +59,4 @@ function Portfolio() {
     </div>
   );
 }
+

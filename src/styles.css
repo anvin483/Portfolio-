@@ -129,6 +129,10 @@
 .clip-notch-bl {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 16px 100%, 0 calc(100% - 16px));
 }
+.clip-hex {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
 
 /* Text stroke display */
 .text-stroke {

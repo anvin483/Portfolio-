@@ -37,7 +37,7 @@ export function Contact() {
     <section id="terminal" className="relative border-t border-white/10 py-24">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex items-center gap-3">
-          <span className="mono-data text-[#DC2626]">// 06</span>
+          <span className="mono-data text-[#DC2626]">// 08</span>
           <span className="h-px flex-1 bg-white/10" />
           <span className="ui-label text-white/40">Transmission</span>
         </div>

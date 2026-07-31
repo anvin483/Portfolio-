@@ -8,8 +8,10 @@ const LINKS = [
   { label: "ARCHIVE", href: "#archive" },
   { label: "EXPERIENCE", href: "#experience" },
   { label: "CREDENTIALS", href: "#credentials" },
+  { label: "ACHIEVEMENTS", href: "#achievements" },
   { label: "TERMINAL", href: "#terminal" },
 ];
+
 
 export function Nav() {
   const [open, setOpen] = useState(false);
