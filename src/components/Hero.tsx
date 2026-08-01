@@ -3,6 +3,8 @@ import { ChevronDown, Crosshair } from "lucide-react";
 import { CyberGridCanvas } from "./CyberGridCanvas";
 import { Typewriter } from "./Typewriter";
 import { Terminal } from "./Terminal";
+import { ProfileFrame } from "./ProfileFrame";
+
 import resumeAsset from "@/assets/resume.pdf.asset.json";
 
 export function Hero() {
@@ -93,9 +95,12 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.15, ease: [0.4, 0, 0.2, 1] }}
+          className="space-y-8"
         >
+          <ProfileFrame />
           <Terminal />
         </motion.div>
+
       </div>
 
       <a
