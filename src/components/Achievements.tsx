@@ -142,7 +142,7 @@ export function Achievements() {
                         whileTap={{ scale: 0.98 }}
                         className="ui-label ml-auto inline-flex items-center gap-2 border border-[#DC2626]/60 bg-[#DC2626]/10 px-4 py-2 text-[11px] text-[#DC2626] transition-colors hover:bg-[#DC2626]/20"
                       >
-                        <Camera className="h-3.5 w-3.5" />
+                        <FootballIcon className="h-3.5 w-3.5" />
                         VIEW PHOTO
                       </motion.button>
                     )}
