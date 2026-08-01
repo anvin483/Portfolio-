@@ -78,7 +78,7 @@ export function Achievements() {
                       <div className="h-full w-full border-[1px] border-dashed border-[#DC2626]" style={{ clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)" }} />
                     </div>
                     {a.photo ? (
-                      <Camera className="relative z-10 h-20 w-20 text-[#DC2626] drop-shadow-[0_0_18px_rgba(220,38,38,0.6)]" strokeWidth={1.2} />
+                      <FootballIcon className="relative z-10 h-20 w-20 text-[#DC2626] drop-shadow-[0_0_18px_rgba(220,38,38,0.6)]" />
                     ) : (
                       <Trophy className="relative z-10 h-20 w-20 text-[#DC2626] drop-shadow-[0_0_18px_rgba(220,38,38,0.6)]" strokeWidth={1.2} />
                     )}
