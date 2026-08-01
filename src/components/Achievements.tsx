@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Trophy, Cloud, Boxes, GitBranch, Rocket, Award, ChevronRight, X, Camera } from "lucide-react";
+import { Trophy, Cloud, Boxes, GitBranch, Rocket, Award, ChevronRight, X } from "lucide-react";
 import footballWinnerPhoto from "@/assets/football-tournament-winner.png.asset.json";
 
 const ACHIEVEMENTS = [
