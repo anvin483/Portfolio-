@@ -203,6 +203,28 @@ function iconFor(s: string) {
   if (s.includes("Kubernetes")) return <Cloud className={cls} />;
   if (s.includes("API")) return <GitBranch className={cls} />;
   if (s.includes("CI/CD") || s.includes("Pipeline")) return <Rocket className={cls} />;
-  if (s.includes("Camera") || s.includes("Photo")) return <Camera className={cls} />;
   return <ChevronRight className={cls} />;
+}
+
+function FootballIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-label="Football"
+    >
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 3l2.5 4.5L12 12l-2.5-4.5L12 3z" />
+      <path d="M12 21l-2.5-4.5L12 12l2.5 4.5L12 21z" />
+      <path d="M3.5 8.5l4.5 2.5L12 12l-2.5-4.5-6 1z" />
+      <path d="M20.5 15.5l-4.5-2.5L12 12l2.5 4.5 6-1z" />
+      <path d="M20.5 8.5l-4.5 2.5L12 12l2.5-4.5 6 1z" />
+      <path d="M3.5 15.5l4.5-2.5L12 12l-2.5 4.5-6-1z" />
+    </svg>
+  );
 }
