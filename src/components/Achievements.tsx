@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Trophy, Cloud, Boxes, GitBranch, Rocket, Award, ChevronRight, X, Camera } from "lucide-react";
+import { Trophy, Cloud, Boxes, GitBranch, Rocket, Award, ChevronRight, X } from "lucide-react";
 import footballWinnerPhoto from "@/assets/football-tournament-winner.png.asset.json";
 
 const ACHIEVEMENTS = [
@@ -78,7 +78,7 @@ export function Achievements() {
                       <div className="h-full w-full border-[1px] border-dashed border-[#DC2626]" style={{ clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)" }} />
                     </div>
                     {a.photo ? (
-                      <Camera className="relative z-10 h-20 w-20 text-[#DC2626] drop-shadow-[0_0_18px_rgba(220,38,38,0.6)]" strokeWidth={1.2} />
+                      <FootballIcon className="relative z-10 h-20 w-20 text-[#DC2626] drop-shadow-[0_0_18px_rgba(220,38,38,0.6)]" />
                     ) : (
                       <Trophy className="relative z-10 h-20 w-20 text-[#DC2626] drop-shadow-[0_0_18px_rgba(220,38,38,0.6)]" strokeWidth={1.2} />
                     )}
@@ -142,7 +142,7 @@ export function Achievements() {
                         whileTap={{ scale: 0.98 }}
                         className="ui-label ml-auto inline-flex items-center gap-2 border border-[#DC2626]/60 bg-[#DC2626]/10 px-4 py-2 text-[11px] text-[#DC2626] transition-colors hover:bg-[#DC2626]/20"
                       >
-                        <Camera className="h-3.5 w-3.5" />
+                        <FootballIcon className="h-3.5 w-3.5" />
                         VIEW PHOTO
                       </motion.button>
                     )}
@@ -203,6 +203,28 @@ function iconFor(s: string) {
   if (s.includes("Kubernetes")) return <Cloud className={cls} />;
   if (s.includes("API")) return <GitBranch className={cls} />;
   if (s.includes("CI/CD") || s.includes("Pipeline")) return <Rocket className={cls} />;
-  if (s.includes("Camera") || s.includes("Photo")) return <Camera className={cls} />;
   return <ChevronRight className={cls} />;
+}
+
+function FootballIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-label="Football"
+    >
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 3l2.5 4.5L12 12l-2.5-4.5L12 3z" />
+      <path d="M12 21l-2.5-4.5L12 12l2.5 4.5L12 21z" />
+      <path d="M3.5 8.5l4.5 2.5L12 12l-2.5-4.5-6 1z" />
+      <path d="M20.5 15.5l-4.5-2.5L12 12l2.5 4.5 6-1z" />
+      <path d="M20.5 8.5l-4.5 2.5L12 12l2.5-4.5 6 1z" />
+      <path d="M3.5 15.5l4.5-2.5L12 12l-2.5 4.5-6-1z" />
+    </svg>
+  );
 }
