@@ -168,7 +168,7 @@ export function Achievements() {
               animate={{ opacity: 1, scale: 1, rotateX: 0 }}
               exit={{ opacity: 0, scale: 0.85, rotateX: -8 }}
               transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
-              className="clip-notch-tr relative w-full max-w-4xl border border-[#DC2626]/50 bg-[#0a0a0a] p-3 red-glow-box"
+              className="clip-notch-tr relative flex max-h-[90vh] w-full max-w-3xl flex-col border border-[#DC2626]/50 bg-[#0a0a0a] p-3 red-glow-box"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="scan-line" />
@@ -178,11 +178,11 @@ export function Achievements() {
               >
                 <X className="h-5 w-5" />
               </button>
-              <div className="relative overflow-hidden border border-white/10 bg-black/60">
+              <div className="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden border border-white/10 bg-black/60 p-1">
                 <img
                   src={footballWinnerPhoto.url}
                   alt="Football Tournament 2024 — Championship squad photo"
-                  className="w-full object-contain"
+                  className="max-h-[70vh] w-auto max-w-full object-contain"
                 />
               </div>
               <div className="mt-3 flex items-center justify-between border-t border-white/10 px-2 py-2">
