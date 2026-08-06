@@ -239,7 +239,7 @@ export function Experience() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setOpenCert(null)}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm"
+            className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-black/85 p-3 backdrop-blur-sm sm:p-6"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.85, rotateX: -12, y: 40 }}
@@ -247,7 +247,7 @@ export function Experience() {
               exit={{ opacity: 0, scale: 0.95, rotateX: 8 }}
               transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
               onClick={(e) => e.stopPropagation()}
-              className="clip-notch-bl relative flex max-h-[90vh] w-full max-w-3xl flex-col overflow-hidden border border-[#DC2626]/60 bg-[#0a0a0a] p-4 red-glow-soft"
+              className="clip-notch-bl relative flex h-auto max-h-[calc(100dvh-1.5rem)] w-full max-w-5xl flex-col overflow-hidden border border-[#DC2626]/60 bg-[#0a0a0a] p-3 red-glow-soft sm:max-h-[calc(100dvh-3rem)] sm:p-4"
             >
               <div className="scan-line pointer-events-none absolute inset-0 z-10 opacity-20" />
               <div className="flex items-center justify-between border-b border-white/10 pb-3">
@@ -271,12 +271,12 @@ export function Experience() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.15 }}
-                className="mt-4 flex min-h-0 flex-1 items-center justify-center border border-white/10 bg-white p-1"
+                className="mt-3 flex min-h-0 flex-1 items-center justify-center overflow-hidden border border-white/10 bg-white p-1 sm:mt-4"
               >
                 <img
                   src={openCert.image}
                   alt={`${openCert.title} certificate`}
-                  className="max-h-[65vh] w-auto max-w-full object-contain"
+                  className="block max-h-[calc(100dvh-10.5rem)] w-auto max-w-full object-contain sm:max-h-[calc(100dvh-12rem)]"
                 />
               </motion.div>
               <motion.div
