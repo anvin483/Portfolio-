@@ -177,7 +177,7 @@ export function Credentials() {
               exit={{ opacity: 0, scale: 0.95, rotateX: 8 }}
               transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
               onClick={(e) => e.stopPropagation()}
-              className="clip-notch-bl relative w-full max-w-4xl overflow-hidden border border-[#DC2626]/60 bg-[#0a0a0a] p-4 red-glow-soft"
+              className="clip-notch-bl relative flex max-h-[90vh] w-full max-w-3xl flex-col overflow-hidden border border-[#DC2626]/60 bg-[#0a0a0a] p-4 red-glow-soft"
             >
               <div className="scan-line pointer-events-none absolute inset-0 z-10 opacity-20" />
               <div className="flex items-center justify-between border-b border-white/10 pb-3">
@@ -201,9 +201,13 @@ export function Credentials() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.15 }}
-                className="mt-4 border border-white/10 bg-white"
+                className="mt-4 flex min-h-0 flex-1 items-center justify-center border border-white/10 bg-white p-1"
               >
-                <img src={openCred.certificate} alt={`${openCred.name} certificate`} className="block h-auto w-full" />
+                <img
+                  src={openCred.certificate}
+                  alt={`${openCred.name} certificate`}
+                  className="max-h-[65vh] w-auto max-w-full object-contain"
+                />
               </motion.div>
               <motion.div
                 initial={{ opacity: 0 }}
