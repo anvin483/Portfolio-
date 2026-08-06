@@ -25,7 +25,7 @@ export function ProfileFrame({ src = profileAsset.url }: { src?: string }) {
       initial={{ opacity: 0, scale: 0.92 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
-      className="relative mx-auto w-full max-w-[300px]"
+      className="relative mx-auto w-full max-w-[270px] sm:max-w-[300px]"
       onMouseMove={onMove}
       onMouseEnter={() => setHot(true)}
       onMouseLeave={() => setHot(false)}
@@ -65,12 +65,12 @@ export function ProfileFrame({ src = profileAsset.url }: { src?: string }) {
         transition={{ type: "spring", stiffness: 220, damping: 18 }}
       >
         <div className="clip-hex bg-[#DC2626] p-[2px] red-glow-soft">
-          <div className="clip-hex relative aspect-[1/1.1] overflow-hidden bg-[#0a0a0a]">
+          <div className="clip-hex relative aspect-[3/4] overflow-hidden bg-[#0a0a0a]">
             <div className="absolute inset-0 tactical-grid-red opacity-40" aria-hidden />
             <motion.img
               src={src}
               alt="Anvin Jose — operator ID photo"
-              className="h-full w-full object-cover object-[50%_18%]"
+              className="h-full w-full object-cover object-top"
               animate={{
                 scale: hot ? 1.08 : 1,
                 filter: hot
