@@ -1,5 +1,7 @@
-import { motion, useScroll, useSpring } from "framer-motion";
+import { motion, useScroll, useSpring, type Variants } from "framer-motion";
 import type { ReactNode } from "react";
+
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 /** Thin tactical progress rail pinned to the top of the viewport. */
 export function ScrollProgress() {
@@ -14,22 +16,113 @@ export function ScrollProgress() {
   );
 }
 
-/** Fades + lifts a block into view as it enters the viewport while scrolling. */
+/**
+ * Section-aware reveal presets — each section gets its own entrance signature
+ * so scrolling never feels like the same fade repeated eight times.
+ */
+export type RevealVariant =
+  | "lift"        // blur + rise
+  | "breach-left" // slides in from the left with a skew snap
+  | "breach-right"
+  | "wipe-down"   // clip-path curtain wipe
+  | "wipe-up"
+  | "lock-on"     // scale down into place, like a targeting reticle
+  | "unfold"      // 3D rotateX hinge
+  | "stagger";    // rise + subtle horizontal drift
+
+const VARIANTS: Record<RevealVariant, Variants> = {
+  lift: {
+    hidden: { opacity: 0, y: 48, filter: "blur(8px)" },
+    show: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: { duration: 0.75, ease: EASE },
+    },
+  },
+  "breach-left": {
+    hidden: { opacity: 0, x: -80, skewX: 8 },
+    show: {
+      opacity: 1,
+      x: 0,
+      skewX: 0,
+      transition: { duration: 0.8, ease: EASE },
+    },
+  },
+  "breach-right": {
+    hidden: { opacity: 0, x: 80, skewX: -8 },
+    show: {
+      opacity: 1,
+      x: 0,
+      skewX: 0,
+      transition: { duration: 0.8, ease: EASE },
+    },
+  },
+  "wipe-down": {
+    hidden: { opacity: 0, clipPath: "inset(0% 0% 100% 0%)" },
+    show: {
+      opacity: 1,
+      clipPath: "inset(0% 0% 0% 0%)",
+      transition: { duration: 0.9, ease: EASE },
+    },
+  },
+  "wipe-up": {
+    hidden: { opacity: 0, clipPath: "inset(100% 0% 0% 0%)" },
+    show: {
+      opacity: 1,
+      clipPath: "inset(0% 0% 0% 0%)",
+      transition: { duration: 0.9, ease: EASE },
+    },
+  },
+  "lock-on": {
+    hidden: { opacity: 0, scale: 1.06, filter: "blur(10px)" },
+    show: {
+      opacity: 1,
+      scale: 1,
+      filter: "blur(0px)",
+      transition: { duration: 0.85, ease: EASE },
+    },
+  },
+  unfold: {
+    hidden: { opacity: 0, rotateX: -14, y: 40, transformPerspective: 1200 },
+    show: {
+      opacity: 1,
+      rotateX: 0,
+      y: 0,
+      transition: { duration: 0.9, ease: EASE },
+    },
+  },
+  stagger: {
+    hidden: { opacity: 0, y: 56, x: -24 },
+    show: {
+      opacity: 1,
+      y: 0,
+      x: 0,
+      transition: { duration: 0.8, ease: EASE },
+    },
+  },
+};
+
 export function Reveal({
   children,
+  variant = "lift",
   delay = 0,
-  y = 40,
+  amount = 0.15,
 }: {
   children: ReactNode;
+  variant?: RevealVariant;
   delay?: number;
-  y?: number;
+  amount?: number;
 }) {
+  const v = VARIANTS[variant];
   return (
     <motion.div
-      initial={{ opacity: 0, y, filter: "blur(6px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      viewport={{ once: true, amount: 0.15, margin: "0px 0px -10% 0px" }}
-      transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
+      variants={v}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount, margin: "0px 0px -10% 0px" }}
+      transition={{ delay }}
+      style={{ transformStyle: "preserve-3d" }}
     >
       {children}
     </motion.div>
@@ -37,14 +130,16 @@ export function Reveal({
 }
 
 /** Horizontal sweep line that draws itself in as the section arrives. */
-export function SectionSweep() {
+export function SectionSweep({ mirror = false }: { mirror?: boolean }) {
   return (
     <motion.div
       initial={{ scaleX: 0, opacity: 0 }}
       whileInView={{ scaleX: 1, opacity: 1 }}
       viewport={{ once: true, amount: 0.5 }}
-      transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-      className="mx-auto h-px max-w-7xl origin-left bg-gradient-to-r from-[#DC2626]/70 via-white/10 to-transparent"
+      transition={{ duration: 0.9, ease: EASE }}
+      className={`mx-auto h-px max-w-7xl bg-gradient-to-r from-[#DC2626]/70 via-white/10 to-transparent ${
+        mirror ? "origin-right rotate-180" : "origin-left"
+      }`}
       aria-hidden
     />
   );
