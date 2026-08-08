@@ -41,33 +41,34 @@ function Portfolio() {
       <main>
         <Hero />
         <SectionSweep />
-        <Reveal>
+        <Reveal variant="wipe-down">
           <ProtocolsSection />
         </Reveal>
-        <SectionSweep />
-        <Reveal>
+        <SectionSweep mirror />
+        <Reveal variant="breach-left">
           <ArchiveList />
         </Reveal>
         <SectionSweep />
-        <Reveal>
+        <Reveal variant="stagger">
           <Experience />
         </Reveal>
-        <SectionSweep />
-        <Reveal>
+        <SectionSweep mirror />
+        <Reveal variant="lock-on">
           <SkillsMatrix />
         </Reveal>
         <SectionSweep />
-        <Reveal>
+        <Reveal variant="unfold">
           <Credentials />
         </Reveal>
-        <SectionSweep />
-        <Reveal>
+        <SectionSweep mirror />
+        <Reveal variant="breach-right">
           <Achievements />
         </Reveal>
         <SectionSweep />
-        <Reveal>
+        <Reveal variant="wipe-up">
           <Contact />
         </Reveal>
+
       </main>
 
       <footer className="border-t border-white/10 bg-[#050505]">
