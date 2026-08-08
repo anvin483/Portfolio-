@@ -8,6 +8,7 @@ import { SkillsMatrix } from "@/components/SkillsMatrix";
 import { Credentials } from "@/components/Credentials";
 import { Achievements } from "@/components/Achievements";
 import { Contact } from "@/components/Contact";
+import { Reveal, ScrollProgress, SectionSweep } from "@/components/ScrollFX";
 
 
 export const Route = createFileRoute("/")({
