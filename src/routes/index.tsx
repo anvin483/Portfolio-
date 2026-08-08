@@ -36,17 +36,40 @@ export const Route = createFileRoute("/")({
 function Portfolio() {
   return (
     <div className="relative min-h-screen bg-[#050505] text-[#e5e5e5]">
+      <ScrollProgress />
       <Nav />
       <main>
         <Hero />
-        <ProtocolsSection />
-        <ArchiveList />
-        <Experience />
-        <SkillsMatrix />
-        <Credentials />
-        <Achievements />
-        <Contact />
+        <SectionSweep />
+        <Reveal>
+          <ProtocolsSection />
+        </Reveal>
+        <SectionSweep />
+        <Reveal>
+          <ArchiveList />
+        </Reveal>
+        <SectionSweep />
+        <Reveal>
+          <Experience />
+        </Reveal>
+        <SectionSweep />
+        <Reveal>
+          <SkillsMatrix />
+        </Reveal>
+        <SectionSweep />
+        <Reveal>
+          <Credentials />
+        </Reveal>
+        <SectionSweep />
+        <Reveal>
+          <Achievements />
+        </Reveal>
+        <SectionSweep />
+        <Reveal>
+          <Contact />
+        </Reveal>
       </main>
+
       <footer className="border-t border-white/10 bg-[#050505]">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-8 md:flex-row">
           <div className="ui-label text-white/50">
