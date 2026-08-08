@@ -107,22 +107,33 @@ export function Reveal({
   children,
   variant = "lift",
   delay = 0,
-  amount = 0.15,
+  amount = 0.05,
 }: {
   children: ReactNode;
   variant?: RevealVariant;
   delay?: number;
   amount?: number;
 }) {
-  const v = VARIANTS[variant];
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, amount });
+  const [forced, setForced] = useState(false);
+
+  // Safety net: tall sections can miss the intersection threshold on short
+  // viewports — never leave content stuck in its hidden state.
+  useEffect(() => {
+    const t = setTimeout(() => setForced(true), 2500);
+    return () => clearTimeout(t);
+  }, []);
+
   return (
     <motion.div
-      variants={v}
+      ref={ref}
+      variants={VARIANTS[variant]}
       initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount, margin: "0px 0px -10% 0px" }}
+      animate={inView || forced ? "show" : "hidden"}
       transition={{ delay }}
       style={{ transformStyle: "preserve-3d" }}
+
     >
       {children}
     </motion.div>
