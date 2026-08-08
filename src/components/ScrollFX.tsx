@@ -1,5 +1,5 @@
 import { motion, useScroll, useSpring, type Variants } from "framer-motion";
-import type { ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -107,26 +107,49 @@ export function Reveal({
   children,
   variant = "lift",
   delay = 0,
-  amount = 0.15,
 }: {
   children: ReactNode;
   variant?: RevealVariant;
   delay?: number;
-  amount?: number;
 }) {
-  const v = VARIANTS[variant];
+  const ref = useRef<HTMLDivElement>(null);
+  const [shown, setShown] = useState(false);
+
+  // Plain threshold-0 observer: fires as soon as any sliver of the section
+  // enters the viewport, so tall sections can never get stuck hidden.
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setShown(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setShown(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0, rootMargin: "0px 0px -8% 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <motion.div
-      variants={v}
+      ref={ref}
+      variants={VARIANTS[variant]}
       initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount, margin: "0px 0px -10% 0px" }}
+      animate={shown ? "show" : "hidden"}
       transition={{ delay }}
       style={{ transformStyle: "preserve-3d" }}
     >
       {children}
     </motion.div>
   );
+
 }
 
 /** Horizontal sweep line that draws itself in as the section arrives. */
