@@ -25,8 +25,10 @@ export function Nav() {
     <nav className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#050505]/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <Link to="/" className="flex items-center gap-2">
-          <span className="ui-label text-white">
-            &lt;<span className="text-[#DC2626]">WARRIOR</span>.SEC /&gt;
+          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#DC2626] text-xs font-black text-white red-glow-soft">AJ</span>
+          <span className="flex flex-col leading-none">
+            <span className="ui-label whitespace-nowrap text-sm text-white">ANVIN JOSE</span>
+            <span className="mono-data mt-1 text-[9px] tracking-[0.18em] text-white/45">CYBERSECURITY</span>
           </span>
         </Link>
 

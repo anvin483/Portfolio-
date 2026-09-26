@@ -35,7 +35,7 @@ export const Route = createFileRoute("/")({
 
 function Portfolio() {
   return (
-    <div className="relative min-h-screen bg-[#050505] text-[#e5e5e5]">
+    <div className="tactical-site-shell relative min-h-screen text-[#e5e5e5]">
       <ScrollProgress />
       <Nav />
       <main>
@@ -71,10 +71,10 @@ function Portfolio() {
 
       </main>
 
-      <footer className="border-t border-white/10 bg-[#050505]">
+      <footer className="border-t border-white/10 bg-transparent">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-8 md:flex-row">
           <div className="ui-label text-white/50">
-            &lt;<span className="text-[#DC2626]">WARRIOR</span>.SEC /&gt; // ANVIN JOSE · 2026
+            AJ // ANVIN JOSE · CYBERSECURITY · 2026
           </div>
           <div className="mono-data text-white/40">
             uptime 99.98% · aes-256-gcm · node-07 secure

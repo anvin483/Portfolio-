@@ -1,20 +1,22 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Github } from "lucide-react";
 import { PROTOCOLS } from "./Protocols";
-import cyberwatchDossier from "@/assets/cyberwatch-dossier.jpeg.asset.json";
-import phishDossier from "@/assets/phish-dossier.png.asset.json";
-import fcritPortalDossier from "@/assets/fcrit-portal-dossier.png.asset.json";
 
 const DOSSIER_IMAGES: Record<string, string> = {
-  cyberwatch: cyberwatchDossier.url,
-  phish: phishDossier.url,
-  portal: fcritPortalDossier.url,
+  cyberwatch: "/images/cyberwatch-ai-dashboard.png",
+  ids: "/images/advanced-ml-intrusion-detection.png",
+  autovuln: "/images/autovuln-scanner-dashboard.png",
+  phish: "/images/phishing-detection-system.png",
+  portal: "/images/fcrit-portal-hardening.png",
 };
 
 export function ArchiveList() {
   const [active, setActive] = useState(0);
-  const p = PROTOCOLS[active];
+  const archiveProtocols = PROTOCOLS.filter(
+    (protocol) => protocol.id !== "portal" && protocol.id !== "quiz",
+  );
+  const p = archiveProtocols[active];
   return (
     <section id="archive" className="relative border-t border-white/10 py-24">
       <div className="mx-auto max-w-7xl px-6">
@@ -29,7 +31,7 @@ export function ArchiveList() {
 
         <div className="mt-10 grid gap-8 md:grid-cols-5">
           <ul className="md:col-span-3">
-            {PROTOCOLS.map((op, i) => (
+            {archiveProtocols.map((op, i) => (
               <li key={op.id}>
                 <button
                   onMouseEnter={() => setActive(i)}
@@ -102,6 +104,50 @@ export function ArchiveList() {
                     loading="lazy"
                   />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/60 via-transparent to-transparent" />
+                  {p.id === "cyberwatch" && (
+                    <a
+                      href="https://github.com/anvin483/CYBERWATCH-AI"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Open CyberWatch AI GitHub repository"
+                      className="mono-data absolute bottom-2 left-2 inline-flex items-center gap-1.5 border border-white/20 bg-black/80 px-2 py-1 text-[10px] font-bold uppercase text-white transition-colors hover:border-[#DC2626] hover:text-[#DC2626]"
+                    >
+                      <Github className="h-3 w-3" /> GITHUB ↗
+                    </a>
+                  )}
+                  {p.id === "phish" && (
+                    <a
+                      href="https://github.com/anvin483/PHISHING-DETECTION-"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Open Phishing Detection System GitHub repository"
+                      className="mono-data absolute bottom-2 left-2 inline-flex items-center gap-1.5 border border-white/20 bg-black/80 px-2 py-1 text-[10px] font-bold uppercase text-white transition-colors hover:border-[#DC2626] hover:text-[#DC2626]"
+                    >
+                      <Github className="h-3 w-3" /> GITHUB ↗
+                    </a>
+                  )}
+                  {p.id === "autovuln" && (
+                    <a
+                      href="https://github.com/anvin483/AutoVulnerable"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Open AutoVuln Scanner GitHub repository"
+                      className="mono-data absolute bottom-2 left-2 inline-flex items-center gap-1.5 border border-white/20 bg-black/80 px-2 py-1 text-[10px] font-bold uppercase text-white transition-colors hover:border-[#DC2626] hover:text-[#DC2626]"
+                    >
+                      <Github className="h-3 w-3" /> GITHUB ↗
+                    </a>
+                  )}
+                  {p.id === "ids" && (
+                    <a
+                      href="https://github.com/anvin483/Advance-IDS"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Open Advanced ML Intrusion Detection GitHub repository"
+                      className="mono-data absolute bottom-2 left-2 inline-flex items-center gap-1.5 border border-white/20 bg-black/80 px-2 py-1 text-[10px] font-bold uppercase text-white transition-colors hover:border-[#DC2626] hover:text-[#DC2626]"
+                    >
+                      <Github className="h-3 w-3" /> GITHUB ↗
+                    </a>
+                  )}
                 </div>
               )
             )}

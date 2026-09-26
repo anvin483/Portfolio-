@@ -2,9 +2,6 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Terminal as TerminalIcon, X } from "lucide-react";
 import { PROTOCOLS } from "./Protocols";
-import fcritPortalDossier from "@/assets/fcrit-portal-dossier.png.asset.json";
-import utkarshQuizPlatform from "@/assets/utkarsh-quiz-platform.png.asset.json";
-import utkarshCertAsset from "@/assets/utkarsh-minds-cert.jpeg.asset.json";
 
 const portal = PROTOCOLS.find((p) => p.id === "portal")!;
 
@@ -15,8 +12,8 @@ const ENTRIES = [
     org: "Utkarsh Minds",
     period: "2024 — 2025",
     href: null,
-    image: utkarshQuizPlatform.url,
-    certificate: utkarshCertAsset.url,
+    image: "/images/utkarsh-minds-quiz-platform.png",
+    certificate: "/images/utkarsh-minds-certificate.jpg",
     certificateTitle: "Mini Project – Data Processing for Business Intelligence",
     summary:
       "Business Intelligence and data-engineering engagement focused on cleaning, transforming, and validating large datasets to power reliable analytics and decision-making.",
@@ -32,7 +29,7 @@ const ENTRIES = [
     org: "FCRIT · ims.fcrit.ac.in",
     period: "PRODUCTION ENGAGEMENT",
     href: "https://ims.fcrit.ac.in",
-    image: fcritPortalDossier.url,
+    image: "/images/fcrit-portal-field-deployment.png",
     certificate: null,
     certificateTitle: null,
     summary: portal.summary,

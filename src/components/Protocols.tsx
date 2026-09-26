@@ -13,6 +13,7 @@ export type Protocol = {
   threat: string;
   mitigation: string;
   architecture: string;
+  image?: string;
 };
 
 export const PROTOCOLS: Protocol[] = [
@@ -48,6 +49,33 @@ export const PROTOCOLS: Protocol[] = [
       "Feature engineering on flow metadata, model tuning per attack class, thresholded alerting with human-in-the-loop review.",
     architecture:
       "PCAP/flow ingest → feature extractor → trained classifier → Flask verdict API → SQLite audit log.",
+  },
+  {
+    id: "autovuln",
+    code: "SYS_06",
+    name: "AutoVuln Scanner",
+    category: "DEFENSIVE",
+    summary:
+      "Automated vulnerability assessment command center combining live scan orchestration, threat intelligence, and actionable reporting.",
+    stack: [
+      "Python",
+      "Flask",
+      "SQLAlchemy",
+      "SQLite",
+      "Nmap",
+      "NVD API",
+      "Vanilla JS",
+      "Chart.js",
+      "Pytest",
+    ],
+    scope:
+      "Unified security operations dashboard for launching authorized network and web assessments, streaming scan output, mapping attack surfaces, and exporting PDF reports.",
+    threat:
+      "Exposed ports and services, weak security headers or TLS ciphers, SQL injection, reflected XSS, discoverable directories, and hidden API or GraphQL endpoints.",
+    mitigation:
+      "Nmap service fingerprinting, active web checks, DNS subdomain enumeration, NVD CVE and CVSS mapping, live risk scoring, and actionable reporting.",
+    architecture:
+      "Flask API + SQLAlchemy/SQLite → threaded scan jobs → SSE live terminal → interactive dashboard → PDF reports, webhooks, and scheduled scans.",
   },
   {
     id: "phish",
@@ -267,6 +295,20 @@ function ProtocolModal({ p, onClose }: { p: Protocol; onClose: () => void }) {
           >
             {p.summary}
           </motion.p>
+          {p.image && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.18, duration: 0.3 }}
+              className="mt-6 overflow-hidden border border-[#DC2626]/30"
+            >
+              <img
+                src={p.image}
+                alt={`${p.name} dashboard`}
+                className="block w-full"
+              />
+            </motion.div>
+          )}
           <div className="mt-6 grid gap-5 md:grid-cols-2">
             <Field label="Scope" body={p.scope} delay={0.2} />
             <Field label="Threat Vector" body={p.threat} delay={0.25} />

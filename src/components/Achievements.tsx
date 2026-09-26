@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Trophy, Cloud, Boxes, GitBranch, Rocket, Award, ChevronRight, X } from "lucide-react";
-import footballWinnerPhoto from "@/assets/football-tournament-winner.png.asset.json";
 
 const ACHIEVEMENTS = [
   {
@@ -35,7 +34,7 @@ const ACHIEVEMENTS = [
       "Secured the tournament trophy through consistent execution and squad coordination",
     ],
     stack: ["Leadership", "Team Coordination", "Strategic Execution", "Discipline"],
-    photo: footballWinnerPhoto.url,
+    photo: "/images/team-championship-photo.png",
   },
 ];
 
@@ -180,7 +179,7 @@ export function Achievements() {
               </button>
               <div className="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden border border-white/10 bg-black/60 p-1">
                 <img
-                  src={footballWinnerPhoto.url}
+                  src="/images/team-championship-photo.png"
                   alt="Football Tournament 2024 — Championship squad photo"
                   className="block max-h-[calc(100dvh-7.5rem)] w-auto max-w-full object-contain sm:max-h-[calc(100dvh-9rem)]"
                 />
@@ -212,19 +211,15 @@ function FootballIcon({ className }: { className?: string }) {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.5"
+      strokeWidth="1.4"
       strokeLinecap="round"
       strokeLinejoin="round"
       className={className}
       aria-label="Football"
     >
       <circle cx="12" cy="12" r="9" />
-      <path d="M12 3l2.5 4.5L12 12l-2.5-4.5L12 3z" />
-      <path d="M12 21l-2.5-4.5L12 12l2.5 4.5L12 21z" />
-      <path d="M3.5 8.5l4.5 2.5L12 12l-2.5-4.5-6 1z" />
-      <path d="M20.5 15.5l-4.5-2.5L12 12l2.5 4.5 6-1z" />
-      <path d="M20.5 8.5l-4.5 2.5L12 12l2.5-4.5 6 1z" />
-      <path d="M3.5 15.5l4.5-2.5L12 12l-2.5 4.5-6-1z" />
+      <path d="m12 6.6 4 2.9-1.5 4.7h-5L8 9.5l4-2.9Z" fill="currentColor" fillOpacity=".16" />
+      <path d="M12 6.6V3M8 9.5 3.5 8.1M9.5 14.2 6.8 18.4M14.5 14.2l2.7 4.2M16 9.5l4.5-1.4" />
     </svg>
   );
 }

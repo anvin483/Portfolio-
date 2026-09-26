@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Terminal as TerminalIcon, X } from "lucide-react";
 
 const OUTPUT: Record<string, string[]> = {
   help: [
@@ -39,13 +40,14 @@ const OUTPUT: Record<string, string[]> = {
 type Line = { prompt?: boolean; text: string; kind?: "cmd" | "out" | "err" | "sys" };
 
 const BOOT: Line[] = [
-  { text: "warrior.sec // secure shell v3.2.1", kind: "sys" },
+  { text: "aj.cybersecurity // secure shell v3.2.1", kind: "sys" },
   { text: "handshake ................ OK", kind: "sys" },
   { text: "tls 1.3 · aes-256-gcm .... OK", kind: "sys" },
   { text: 'type "help" to list available protocols.', kind: "sys" },
 ];
 
 export function Terminal() {
+  const [open, setOpen] = useState(false);
   const [lines, setLines] = useState<Line[]>(BOOT);
   const [value, setValue] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -74,8 +76,37 @@ export function Terminal() {
 
   const quick = ["help", "whoami", "stats", "skills", "clear"];
 
+  if (!open) {
+    return (
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className="group mx-auto flex items-center gap-3 border border-[#DC2626]/60 bg-[#0a0a0a] px-5 py-4 text-left red-glow-soft t-tactical hover:bg-[#DC2626]/10"
+        aria-label="Open command terminal"
+      >
+        <span className="flex h-11 w-11 items-center justify-center border border-[#DC2626]/50 bg-[#DC2626]/10">
+          <TerminalIcon className="h-6 w-6 text-[#DC2626] group-hover:scale-110" />
+        </span>
+        <span>
+          <span className="ui-label block text-white">OPEN COMMAND TERMINAL</span>
+          <span className="mono-data mt-1 block text-white/40">AJ.CYBERSECURITY // NODE-07</span>
+        </span>
+      </button>
+    );
+  }
+
   return (
-    <div className="relative overflow-hidden border border-white/10 bg-[#0a0a0a]">
+    <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm" onClick={() => setOpen(false)}>
+      <div className="relative w-full max-w-3xl" onClick={(e) => e.stopPropagation()}>
+        <button
+          type="button"
+          onClick={() => setOpen(false)}
+          className="absolute right-3 top-3 z-10 border border-white/15 bg-black/60 p-2 text-white/60 hover:border-[#DC2626] hover:text-[#DC2626]"
+          aria-label="Close command terminal"
+        >
+          <X className="h-4 w-4" />
+        </button>
+        <div className="relative overflow-hidden border border-white/10 bg-[#0a0a0a]">
       <div className="scan-line" />
       {/* header */}
       <div className="flex items-center justify-between border-b border-white/10 bg-[#050505] px-4 py-2">
@@ -103,7 +134,7 @@ export function Terminal() {
                     : "text-emerald-400/90"
             }
           >
-            {l.prompt && <span className="text-[#DC2626]">operator@warrior-node:~$ </span>}
+            {l.prompt && <span className="text-[#DC2626]">operator@aj-node:~$ </span>}
             <span className="whitespace-pre-wrap">{l.text}</span>
           </div>
         ))}
@@ -115,7 +146,7 @@ export function Terminal() {
           }}
           className="mt-1 flex items-center"
         >
-          <span className="text-[#DC2626] font-mono text-[13px]">operator@warrior-node:~$&nbsp;</span>
+          <span className="text-[#DC2626] font-mono text-[13px]">operator@aj-node:~$&nbsp;</span>
           <input
             ref={inputRef}
             value={value}
@@ -142,6 +173,8 @@ export function Terminal() {
             <span className="skew-tactical-inner ui-label text-white/70">{c}</span>
           </button>
         ))}
+      </div>
+        </div>
       </div>
     </div>
   );

@@ -1,10 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShieldCheck, Award, GraduationCap, X, ExternalLink } from "lucide-react";
-import certAsset from "@/assets/career-essentials-cert.png.asset.json";
-import genCertAsset from "@/assets/generative-ai-cert.png.asset.json";
-import deloitteCertAsset from "@/assets/deloitte-cyber-job-simulation-cert.jpeg.asset.json";
-import pwcCertAsset from "@/assets/pwc-cyber-job-simulation-cert.png.asset.json";
 import ibmCertAsset from "@/assets/cybersecurity-fundamentals.png.asset.json";
 
 type Cred = {
@@ -30,7 +26,7 @@ const CREDS: Cred[] = [
     org: "Microsoft & LinkedIn",
     status: "VERIFIED",
     icon: Award,
-    certificate: certAsset.url,
+    certificate: "/images/career-essentials-cybersecurity-certificate.png",
   },
   {
     code: "CRT_03",
@@ -38,7 +34,7 @@ const CREDS: Cred[] = [
     org: "IBM SkillsBuild",
     status: "VERIFIED",
     icon: ShieldCheck,
-    certificate: ibmCertAsset.url,
+    certificate: "/images/cybersecurity-fundamentals-certificate.png",
   },
   {
     code: "CRT_04",
@@ -46,7 +42,7 @@ const CREDS: Cred[] = [
     org: "Deloitte AU",
     status: "VERIFIED",
     icon: Award,
-    certificate: deloitteCertAsset.url,
+    certificate: "/images/deloitte-cyber-job-simulation-certificate.png",
   },
   {
     code: "CRT_05",
@@ -54,7 +50,7 @@ const CREDS: Cred[] = [
     org: "PwC US",
     status: "VERIFIED",
     icon: Award,
-    certificate: pwcCertAsset.url,
+    certificate: "/images/pwc-us-cyber-job-simulation-certificate.png",
   },
   {
     code: "CRT_06",
@@ -62,7 +58,23 @@ const CREDS: Cred[] = [
     org: "NxtWave",
     status: "VERIFIED",
     icon: GraduationCap,
-    certificate: genCertAsset.url,
+    certificate: "/images/generative-ai-certificate.png",
+  },
+  {
+    code: "CRT_07",
+    name: "Open Source Intelligence (OSINT)",
+    org: "Security Blue Team",
+    status: "VERIFIED",
+    icon: ShieldCheck,
+    certificate: "/images/open-source-intelligence-osint-certificate.png",
+  },
+  {
+    code: "CRT_08",
+    name: "Cyber Threat Intelligence 101",
+    org: "arcX",
+    status: "VERIFIED",
+    icon: ShieldCheck,
+    certificate: "/images/cyber-threat-intelligence-101-certificate.png",
   },
 ];
 

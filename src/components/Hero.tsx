@@ -44,13 +44,12 @@ export function Hero() {
           <div className="mb-6 flex items-center gap-3">
             <StatusPod />
             <span className="mono-data text-white/50">
-              &gt; init warrior.sec · handshake OK · clearance γ-3
+              &gt; init aj.cybersecurity · handshake OK · clearance γ-3
             </span>
           </div>
 
           <h1 className="text-5xl font-black uppercase leading-[0.95] tracking-tight text-white md:text-7xl">
-            Anvin
-            <span className="text-[#DC2626] red-glow-text"> Jose</span>
+            <span className="whitespace-nowrap">Anvin <span className="text-[#DC2626] red-glow-text">Jose</span></span>
             <br />
             <span className="text-white/90">Cyber Operator</span>
           </h1>
