@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import resumeAsset from "@/assets/resume.pdf.asset.json";
 
 const LINKS = [
   { label: "SYSTEMS", href: "#systems" },
@@ -45,7 +44,7 @@ export function Nav() {
         </div>
 
         <a
-          href={resumeAsset.url}
+          href="/Anvin_resume.pdf"
           target="_blank"
           rel="noreferrer"
           className="skew-tactical border border-[#DC2626] bg-[#DC2626] px-5 py-2 red-glow-soft t-tactical hover:brightness-110"

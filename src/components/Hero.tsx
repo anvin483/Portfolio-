@@ -5,8 +5,6 @@ import { Typewriter } from "./Typewriter";
 import { Terminal } from "./Terminal";
 import { ProfileFrame } from "./ProfileFrame";
 
-import resumeAsset from "@/assets/resume.pdf.asset.json";
-
 export function Hero() {
   return (
     <section className="relative overflow-hidden pt-24">
@@ -76,7 +74,7 @@ export function Hero() {
               </span>
             </a>
             <a
-              href={resumeAsset.url}
+              href="/Anvin_resume.pdf"
               target="_blank"
               rel="noreferrer"
               className="skew-tactical border border-white/25 bg-transparent px-7 py-3 t-tactical hover:border-[#DC2626] hover:text-[#DC2626]"
